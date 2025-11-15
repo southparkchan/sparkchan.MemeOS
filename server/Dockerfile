@@ -25,7 +25,6 @@ COPY server/ ./server
 
 # copy frontend output
 COPY --from=frontend-builder /workspace/apps/playground/out ./server/public
-# jika pakai dist: ganti out → dist
 
 WORKDIR /app/server
 ENV NODE_ENV=production
