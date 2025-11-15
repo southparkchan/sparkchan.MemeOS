@@ -12,7 +12,7 @@ Fully modular stack for building zk-powered meme applications.
 
 ## 🚀 Quick Start
 ```sh
-git clone <repo>
+git clone <https://github.com/southparkchan/memeosv2->
 cd memeos
 npm install
 npm run dev
