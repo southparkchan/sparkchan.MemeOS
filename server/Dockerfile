@@ -18,7 +18,7 @@ WORKDIR /app
 # copy server package.json and install deps
 COPY server/package*.json ./server/
 WORKDIR /app/server
-RUN npm install --omit=dev   # <--- GANTI INI
+RUN npm install #omit=dev   
 
 # copy server source
 COPY server/ ./server
