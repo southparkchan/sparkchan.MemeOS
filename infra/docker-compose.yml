@@ -1,9 +1,25 @@
-FROM rust:1.72 as builder
-WORKDIR /app
-COPY . .
-RUN cargo build --release
+version: '3.8'
 
-FROM debian:bullseye-slim
-COPY --from=builder /app/target/release/runtime /usr/local/bin/runtime
-CMD ["runtime"]
+services:
+  postgres:
+    image: postgres:15
+    environment:
+      POSTGRES_USER: spark
+      POSTGRES_PASSWORD: spark
+      POSTGRES_DB: sparkdb
+    ports:
+      - "5432:5432"
+
+  runtime:
+    build: ../apps/runtime
+    ports:
+      - "8080:8080"
+
+  proof:
+    build: ../apps/proof-service
+    ports:
+      - "3000:3000"
+
+  indexer:
+    build: ../apps/indexer
 
