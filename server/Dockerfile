@@ -2,12 +2,11 @@
 FROM node:18-alpine AS frontend-builder
 WORKDIR /workspace
 
-# install deps for frontend
 COPY apps/playground/package*.json apps/playground/
 WORKDIR /workspace/apps/playground
 RUN npm install
 
-# copy rest frontend source and build
+# copy source & build
 COPY apps/playground/ .
 RUN npm run build
 
@@ -15,17 +14,15 @@ RUN npm run build
 FROM node:18-alpine AS runtime
 WORKDIR /app/server
 
-# install server deps
 COPY server/package*.json ./
 RUN npm install --omit=dev
 
-# copy server source
 COPY server/ .
 
-# copy frontend output
+# copy static exported front-end
 COPY --from=frontend-builder /workspace/apps/playground/out ./public
-
 
 ENV NODE_ENV=production
 EXPOSE 8080
+
 CMD ["npm", "start"]
