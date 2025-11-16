@@ -23,7 +23,7 @@ RUN npm install --omit=dev
 COPY server/ .
 
 # copy frontend output
-COPY --from=frontend-builder /workspace/apps/playground/.next ./public
+COPY --from=frontend-builder /workspace/apps/playground/out ./public
 
 
 ENV NODE_ENV=production
