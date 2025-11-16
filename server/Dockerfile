@@ -20,7 +20,8 @@ RUN npm install --omit=dev
 COPY server/ .
 
 # copy static exported front-end
-COPY --from=frontend-builder /workspace/apps/playground/.next ./public
+COPY --from=frontend-builder /workspace/apps/playground/out ./public
+
 
 ENV NODE_ENV=production
 EXPOSE 8080
