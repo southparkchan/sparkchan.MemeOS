@@ -8,11 +8,11 @@ export default function Home() {
       padding: "40px"
     }}>
       <h1 style={{ fontSize: "32px", fontWeight: "bold" }}>
-        MemeOS Dashboard 🚀
+       SPARKCHAN MemeOS Dashboard 🚀
       </h1>
 
       <p style={{ opacity: 0.7, marginTop: "10px" }}>
-        Playground UI berhasil di-load 🎉
+        Playground UI 
       </p>
 
       <div style={{
@@ -27,7 +27,7 @@ export default function Home() {
         </h2>
 
         <p style={{ opacity: 0.8 }}>
-          Semua modul MemeOS siap dipasang.
+         COMING SOON
         </p>
       </div>
     </div>
