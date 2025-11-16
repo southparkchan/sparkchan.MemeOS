@@ -2,7 +2,7 @@
   "name": "memeos-playground",
   "version": "1.0.0",
   "private": true,
-  "scripts": {
+  "scripts": {"next build && next export"
     "dev": "next dev",
     "build": "next build",
     "start": "next start"
