@@ -1,4 +1,5 @@
-import WalletButton from "@/components/WalletButton";
+import WalletButton from "../components/WalletButton.jsx";
+
 
 export default function Home() {
   return (
