@@ -7,9 +7,11 @@ WORKDIR /workspace/apps/playground
 RUN npm install
 
 # copy source & build
-COPY apps/playground/ .
-RUN rm -rf pages  
+COPY apps/playground/ ./src
+RUN rm -rf ./src/pages || true
+WORKDIR /workspace/apps/playground/src
 RUN npm run build
+
 
 # ---------- stage 2: run server ----------
 FROM node:18-alpine AS runtime
