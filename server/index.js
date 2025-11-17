@@ -13,7 +13,12 @@ const __dirname = path.dirname(__filename);
 const app = express();
 const PORT = process.env.PORT || 8080;
 
-app.use(express.json());
+app.use((req, res, next) => {if (req.headers["content-type"] === "application/json") {
+    express.json()(req, res, next);
+  } else {
+    next();
+  }
+});
 
 // static public served earlier (ensure Docker copied out -> ./public)
 app.use(express.static(path.join(__dirname, "public")));
