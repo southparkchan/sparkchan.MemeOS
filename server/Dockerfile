@@ -1,31 +1,16 @@
-# ---------- stage 1: build frontend ----------
-FROM node:18-alpine AS frontend-builder
-WORKDIR /workspace
+# --- Builder ---
+FROM node:18-alpine AS builder
+WORKDIR /app
 
-COPY apps/playground/package*.json apps/playground/
-WORKDIR /workspace/apps/playground
+COPY package.json package-lock.json ./
 RUN npm install
 
-# copy source & build
-COPY apps/playground/ ./src
-WORKDIR /workspace/apps/playground/src
+COPY . .
 RUN npm run build
 
+# --- Runner (static export) ---
+FROM nginx:alpine
+COPY --from=builder /app/out /usr/share/nginx/html
 
-# ---------- stage 2: run server ----------
-FROM node:18-alpine AS runtime
-WORKDIR /app/server
-
-COPY server/package*.json ./
-RUN npm install --omit=dev
-
-COPY server/ .
-
-# copy static exported front-end
-COPY --from=frontend-builder /workspace/apps/playground/out ./public
-
-
-ENV NODE_ENV=production
-EXPOSE 8080
-
-CMD ["npm", "start"]
+EXPOSE 80
+CMD ["nginx", "-g", "daemon off;"]
