@@ -8,7 +8,6 @@ RUN npm install
 
 # copy source & build
 COPY apps/playground/ ./src
-RUN rm -rf ./src/pages || true
 WORKDIR /workspace/apps/playground/src
 RUN npm run build
 
