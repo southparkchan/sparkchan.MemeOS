@@ -8,6 +8,7 @@ RUN npm install
 
 # copy source & build
 COPY apps/playground/ .
+RUN rm -rf pages  
 RUN npm run build
 
 # ---------- stage 2: run server ----------
